@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+        <!-- Registration -->
+        <section id="registerPage">
+            <form method="post" action="{% url 'login user' %}">
+                <fieldset>
+                    <legend>Profile</legend>
+                     {{ form }}
+                    <!-- Button to Create Profile -->
+                    <input type="hidden" name="next" value="{{ next }}">
+                    <button type="submit" class="register">Log in</button>
+                    {% csrf_token %}
+                    <div class="second-option">
+                        <p>Don't have account? <a href="{% url 'register user' %}">Register</a></p>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+    </div>
+{% endblock %}
