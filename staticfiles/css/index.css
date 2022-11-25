@@ -99,7 +99,8 @@ a {
     letter-spacing: normal;
     word-spacing: normal;
     text-transform: uppercase;
-    text-shadow: 0 25px 5px rgba(0, 0, 0, 0.8);
+    /*text-shadow: 0 25px 5px rgba(0, 0, 0, 0.8);*/
+    text-shadow: 0 0px 130px #95c11f;
     font-family: 'Monoton', cursive;
 }
 

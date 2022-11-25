@@ -1,60 +1,30 @@
 from django.contrib import admin
-
-from django.contrib import admin
 from django.contrib.auth import admin as auth_admin, get_user_model
 
-from servicebook.accounts.forms import UserCreateForm, UserEditForm
+from servicebook.accounts.forms import RegisterUserForm
 
 UserModel = get_user_model()
 
 
 @admin.register(UserModel)
-class UserAdmin(auth_admin.UserAdmin):
-    form = UserEditForm
-    add_form = UserCreateForm
-
-    fieldsets = (
+class AppUserAdmin(auth_admin.UserAdmin):
+    ordering = ('email',)
+    list_display = ['email', 'date_joined', 'last_login']
+    list_filter = ()
+    add_form = RegisterUserForm
+    add_fieldsets = (
         (
             None,
             {
-                'fields': (
-                    'username',
-                    'password',
-                ),
-            }),
-        (
-            'Personal info',
-            {
-                'fields': (
-                    'first_name',
-                    'last_name',
-                    'email',
-                ),
+                "classes": ("wide",),
+                "fields": ("email", "password1", "password2"),
             },
         ),
         (
-            'Permissions',
+            None,
             {
-                'fields': (
-                    'is_active',
-                    'is_staff',
-                    'is_superuser',
-                    'groups',
-                    'user_permissions',
-                ),
-            },
-        ),
-        (
-            'Important dates',
-            {
-                'fields': (
-                    'last_login',
-                    'date_joined',
-                ),
+                "classes": ("wide",),
+                "fields": ("first_name", "last_name", "profile_picture"),
             },
         ),
     )
-
-    def get_form(self, request, obj=None, **kwargs):
-        return super().get_form(request, obj, **kwargs)
-

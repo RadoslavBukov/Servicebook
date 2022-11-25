@@ -16,12 +16,8 @@
                 {% endif %}
                 <!-- user full name (if any) -->
                 <h1>{{ profile.first_name }} {{ profile.last_name }}</h1>
-                <!-- user username -->
-                <p class="description">Username: {{ profile.username }}</p>
                 <!-- user email -->
                 <p class="description">Email: {{ profile.email }}</p>
-                <!-- user age -->
-                <p class="description">Age: {{ profile.age }}</p>
                 <!-- total price of all cars -->
                 <p class="description">Total price: {{ total_price|floatformat:3 }}</p>
                 <!-- Edit/Delete buttons -->

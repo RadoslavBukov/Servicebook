@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'servicebook.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'service_book_db',
+        'NAME': 'servicebook_db',
         'USER': 'postgres-user',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
@@ -145,6 +145,7 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Change the build-in user model to Custom(AppUser) user model
 AUTH_USER_MODEL = 'accounts.AppUser'
 
 LOGIN_REDIRECT_URL = reverse_lazy('index')
