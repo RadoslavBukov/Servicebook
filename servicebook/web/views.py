@@ -4,7 +4,17 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    return render(request, 'core/index.html')
+
+    if request.user.is_authenticated:
+        full_name = request.user.profile.get_full_name()
+    else:
+        full_name = ""
+
+    context = {
+        'full_name': full_name,
+    }
+
+    return render(request, 'core/index.html', context)
 
 def error(request):
     return render(request, 'core/404_1.html')

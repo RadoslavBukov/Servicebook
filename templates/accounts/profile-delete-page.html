@@ -1,20 +1,23 @@
-{% extends 'base/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
-{% block page_content %}
-    <!-- Start Delete Profile Section -->
-    <div class="delete-profile">
-        <h1>
-            Are you sure you want to delete your profile?
-        </h1>
-        <div class="sure-buttons">
-            <form method="post" action="{% url 'delete user' pk=request.user.pk %}">
-                <button>Yes</button>
-                {% csrf_token %}
-                <a class="edit-btn" href="javascript:history.back()">Go Back</a>
+{% block content %}
+    <!--Delete Page-->
+    <section id="profileDeletePage">
+        <div class="deleteWrapper">
+            <div class="profileDeleteText">
+                <!-- Profile Info -->
+                <h1>DELETE PROFILE</h1>
+                <h2>Are you sure you want to delete your profile?</h2>
+            </div>
+            <!-- Delete buttons -->
+            <div class="actionBtn">
+                <form method="post" action="{% url 'delete user' pk=object.pk %}">
+                    <a href="{% url 'details user' pk=object.pk %}" class="cancel">Cancel</a>
+                    <button type="submit" class="delete">Delete</button>
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+            </div>
         </div>
-        <img src="{% static 'images/are_you_sure_cat.gif' %}" alt="are you sure cat git">
-    </div>
-    <!-- End Delete Profile Section -->
-
+    </section>
 {% endblock %}

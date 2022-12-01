@@ -1,9 +1,10 @@
 from django.contrib.auth import models as auth_models
 from django.db import models
 from django.utils import timezone
+import datetime
 
 from servicebook.accounts.managers import AppUserManager
-from servicebook.accounts.validators import validate_file_less_than_5mb
+from servicebook.accounts.validators import validate_file_less_than_5mb, validate_date_is_not_in_future
 
 
 class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
@@ -13,12 +14,10 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         blank=False,
     )
     date_joined = models.DateTimeField(
-        auto_now_add=True,
+        default=datetime.datetime.now,
     )
     is_staff = models.BooleanField(
         default=False,
-        null=False,
-        blank=False,
     )
 
     # User credentials consist of `email` and `password`
@@ -29,13 +28,22 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
 class Profile(models.Model):
     first_name = models.CharField(
-        max_length=25
+        max_length=25,
+        # null=True,
+        # blank=True,
     )
     last_name = models.CharField(
-        max_length=25
+        max_length=25,
+        # null=True,
+        # blank=True,
+    )
+    date_of_birth = models.DateField(
+        null=True,
+        blank=True,
+        validators=(validate_date_is_not_in_future,),
     )
     profile_picture = models.ImageField(
-        upload_to='profile_picture/',
+        upload_to='profile_pictures/',
         null=False,
         blank=True,
         validators=(validate_file_less_than_5mb,),
@@ -47,8 +55,13 @@ class Profile(models.Model):
     )
 
     def get_full_name(self):
-        """
-        Return the first_name plus the last_name, with a space in between.
-        """
+        full_name = "%s %s" % (self.first_name, self.last_name)
+        # if 'None' in full_name:
+        #     full_name.replace('None', '')
+        return full_name.strip()
+
+    def __str__(self):
+        if not (self.first_name and self.last_name):
+            return f" id: {self.user_id}"
         full_name = "%s %s" % (self.first_name, self.last_name)
         return full_name.strip()

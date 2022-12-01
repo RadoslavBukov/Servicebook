@@ -4,7 +4,14 @@
     <!-- headlines -->
     <section id="index-headline">
         <div class="index-message">
-            <h2>Welcome to <span>digital</span> car service book!</h2>
+            {% if request.user.is_authenticated %}
+                <h2>Welcome back</h2>
+                {% if full_name %}
+                    <h2><span>{{ full_name }}</span></h2>
+                {% endif %}
+            {% else %}
+                <h2>Welcome to <span>digital</span> car service book!</h2>
+            {%  endif %}
         </div>
         <img src="{% static '/images/cars_index.png' %}" alt="car">
     </section>

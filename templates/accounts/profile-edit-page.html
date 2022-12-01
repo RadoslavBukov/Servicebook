@@ -1,41 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block page_content %}
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-    <div class="edit-delete">
-        <h2>Edit Profile</h2>
-        <form method="post" action="{% url 'edit user' pk=object.pk %}">
-            {% for field in form %}
-                <p class="error"> {{ field.errors }} </p>
-                <div class="label-input">
-                    <label>{{ field.label }}</label>
+{% load placeholders %}
 
-                    {% if not field.label == "Gender:" %}
-                        {{ field }}
-
-                    {% else %}
-                        <div class="list-choice">
-                            <div class="list-choice-title">Gender</div>
-                            <div class="list-choice-objects">
-                                {% for type, value in form.fields.gender.choices %}
-                                    <label>
-                                        <input type="radio" value="{{ value }}" name="gender"
-                                                {% if form.gender.value == value %}
-                                               checked
-                                                {% endif %}/>
-                                        <span>{{ value }}</span>
-                                    </label>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    {% endif %}
-
+{% block content %}
+    <!--Details Page-->
+    <section id="editPage">
+        <div class="editWrapper">
+            <div class="profileEditPage">
+                {% if profile_picture %}
+                    <img src= "/media/{{ profile_picture }}" alt="Profile Image">
+                {% else %}
+                    <img src="{% static 'images/person.png'%}" alt="Empty Profile Image">
+                {% endif %}
+            </div>
+            <form method="post" action="{% url 'edit user' pk=object.pk %}" enctype="multipart/form-data">
+                <div class="profileEditText">
+                    <!-- Profile Info -->
+                    <h1>EDIT PROFILE</h1>
+                    {{ form.as_p }}
+{#                    <h2>First name: {{ form.first_name }}</h2>#}
+{#                    <h2>Last name: {{ form.last_name }}</h2>#}
+{#                    <h2>Date of birth: {{ form.date_of_birth }}</h2>#}
+{#                    <h2>Profile picture: {{ form.profile_picture }}</h2>#}
                 </div>
-                <br>
-            {% endfor %}
+                <div class="password_change">
+                    <p>Password: <a href="{% url 'password change' pk=object.pk %}" id="Reset">Reset</a></p>
+                    <a>Note: The date must be set in format YYYY-MM-DD</a>
+            </form>
+            <!-- Edit/Delete buttons -->
+            <input type="hidden" name="next" value="{{ next }}">
+            <div class="actionBtn">
+                <button type="submit" class="edit-button">Save</button>
+                <a href="{% url 'delete user' pk=object.pk %}" class="delete-button">Delete</a>
+                <a href="{% url 'details user' pk=object.pk %}" class="edit-button">Cancel</a>
+                {% csrf_token %}
+            </div>
 
-            <button class="edit-btn" type="submit">Edit</button>
-            {% csrf_token %}
-        </form>
-    </div>
+        </div>
+    </section>
 {% endblock %}

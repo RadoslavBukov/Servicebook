@@ -1,141 +1,33 @@
-{#{% extends 'base.html' %}#}
-{#{% load static %}#}
-{##}
-{#{% block page_content %}#}
-{#    <div class="profile">#}
-{#        <div class="profile-data">#}
-{#            <div class="profile_img">#}
-{#                <div class="image">#}
-{#                    {% if not profile.profile_picture %}#}
-{#                        <!-- default profile image (if the user does NOT have any)-->#}
-{#                        <img class="profile-img" src="{% static 'images/person.png'%}" alt='profile-image'/>#}
-{#                    {%  else %}#}
-{#                        <!-- if the user has a profile image -->#}
-{#                        <img class="profile-img" src="{{ profile.profile_picture }}" alt={{ profile.username }}/>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="personal">#}
-{#                <div class="edit">#}
-{#                    <p>{{ object.email }}</p>#}
-{#                    {% if is_owner %}#}
-{#                        <a href="{% url 'edit user' pk=request.user.pk %}">#}
-{#                            <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}" alt="edit button">#}
-{#                        </a>#}
-{##}
-{#                        <a href="{% url 'delete user' pk=object.pk %}">#}
-{#                            <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button">#}
-{#                        </a>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#                <div class="data">#}
-{#                    <span>{{ photos_count }}</span>#}
-{#                    <p>photos</p>#}
-{##}
-{#                    <!-- Total Number of Pets owned by the User -->#}
-{#                    <span>{{ pets_count }}</span>#}
-{#                    <p>pets</p>#}
-{##}
-{#                    <!-- Total Number of Likes for the User -->#}
-{#                    <span>{{ likes_count }}</span>#}
-{#                    <p>likes</p>#}
-{#                </div>#}
-{#                {% if object.get_full_name %}#}
-{#                    <h3 class="names">{{ object.get_full_name }}</h3>#}
-{#                {% endif %}#}
-{##}
-{#                <!-- User Email Address -->#}
-{#                <p class="email">{{ object.email }}</p>#}
-{##}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        <div class="pets">#}
-{#            <div class="statuses">#}
-{#                {% for pet in object.pet_set.all %}#}
-{#                    <a href="{% url 'details pet' pet_slug=pet.slug username=object.username %}">#}
-{#                        <div class="head-pet">#}
-{#                            <div class="status">#}
-{#                                <div class="image">#}
-{#                                    <img src="{{ pet.personal_photo }}" alt="image of {{ pet.name }}">#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <p>{{ pet.name }}</p>#}
-{#                        </div>#}
-{#                    </a>#}
-{#                {% endfor %}#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#    <!-- End Profile Details Section -->#}
-{##}
-{#{% endblock %}#}
-
-{#{% extends 'base.html' %}#}
-{#{% load static %}#}
-{#{% block content %}#}
-{##}
-{#    <!-- profile details section -->#}
-{#    <section id="profile-details">#}
-{#        <form method="post" action="{% url 'register user' %}">#}
-{#            <h1>Profile Details</h1>#}
-{#            <div class="info-section">#}
-{#                <div class="car-header">#}
-{#                    {% if not profile.profile_picture %}#}
-{#                        <!-- default profile image (if the user does NOT have any)-->#}
-{#                        <img class="profile-img" src="{% static 'images/person.png'%}" alt='profile-image'/>#}
-{#                    {%  else %}#}
-{#                        <!-- if the user has a profile image -->#}
-{#                        <img class="profile-img" src="{{ profile.profile_picture }}" alt={{ profile.username }}/>#}
-{#                    {% endif %}#}
-{#                    <!-- user full name (if any) -->#}
-{#                    <h1>{{ profile.first_name }} {{ profile.last_name }}</h1>#}
-{#                    <!-- user username -->#}
-{#                    <p class="description">Username: {{ profile.username }}</p>#}
-{#                    <!-- user email -->#}
-{#                    <p class="description">Email: {{ profile.email }}</p>#}
-{#                    <!-- Edit/Delete buttons -->#}
-{#                     <input type="hidden" name="next" value="{{ next }}">#}
-{#                    <div class="buttons">#}
-{#                        <a href="{% url 'index' %}" class="edit-button">Edit</a>#}
-{#                        <a href="{% url 'index' %}" class="delete-button">Delete</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </form>#}
-{#    </section>#}
-{#{% endblock %}#}
-
-
 {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
     <!--Details Page-->
     <section id="detailsPage">
-        <div class="wrapper">
+        <div class="detailWrapper">
             <div class="profilePage">
-                <img src="{% static 'images/person.png'%}" alt="Profile Image">
+                {% if profile_picture %}
+                    <img src= "/media/{{ profile_picture }}" alt="Profile Image">
+                {% else %}
+                    <img src="{% static 'images/person.png'%}" alt="Empty Profile Image">
+                {% endif %}
             </div>
             <div class="profileText">
                 <!-- Profile Info -->
-                {% if object.first_name %}
-                    <h1>Name: {{ object.first_name }}</h1>
+                <h1>PROFILE DETAILS</h1>
+                {% if full_name %}
+                    <h2>Name: {{ full_name }}</h2>
                 {% endif %}
-                <h1>Name: {{ full_name }}</h1>
-                <h1>Email: {{ object.email }}</h1>
-                <h1>Cars: {{ albums_count }}</h1>
+                <h2>Email: {{ object.email }}</h2>
+                <h2>Date of birth: {{ date_of_birth }}</h2>
+                <h2>Registered cars: {{ cars_count }}</h2>
             </div>
             <!-- Edit/Delete buttons -->
             <input type="hidden" name="next" value="{{ next }}">
             <div class="actionBtn">
-                <a href="{% url 'index' %}" class="edit-button">Edit</a>
-                <a href="{% url 'index' %}" class="delete-button">Delete</a>
+                <a href="{% url 'edit user' pk=object.pk %}" class="edit-button">Edit</a>
+                <a href="{% url 'delete user' pk=object.pk %}" class="delete-button">Delete</a>
             </div>
-            {#            <div class="actionBtn">#}
-            {#                <!-- Button for Deleting the Profile -->#}
-            {#                <a href="{% url 'delete user' %}" class="remove">Delete</a>#}
-            {#            </div>#}
 
         </div>
     </section>

@@ -1,0 +1,178 @@
+.editWrapper {
+    height: auto;
+    width: 850px;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 0 0 60px 13px #95c11f;
+    margin: 80px auto 200px;
+}
+
+.profileEditPage img {
+    border-radius: 60px 60px 60px 60px;
+    height: 85%;
+    margin-top: 25px;
+    block-size: 200px;
+}
+
+.profileEditPage {
+    float: left;
+    height: 100%;
+    width: auto;
+    margin-right: 20px;
+}
+
+.profileEditText h1 {
+    color:gainsboro;
+    font-weight: bolder;
+    font-size: 35px;
+    padding-top: 20px;
+    margin-bottom: 120px;
+}
+
+.profileEditText {
+    padding-left: 150px;
+    padding-top: 20px;
+    padding-right: 150px;
+}
+
+
+.profileEditText h2 {
+    color:gainsboro;
+    font-weight: bold;
+    font-size: 25px;
+    padding: 0.2em 10rem;
+}
+
+.carText > p, .profileEditText > p {
+    height: auto;
+    width: 100%;
+    color: #9F9991;
+    line-height: 1.6em;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+
+.actionBtn  {
+    display: flex;
+    text-align: center;
+    left: auto;
+    top: auto;
+    right: 0;
+    bottom: 0;
+}
+
+.actionBtn > a, button {
+	width: 200%;
+	height: 50px;
+	cursor: pointer;
+	border: none;
+    border-radius: 10px;
+	display: inline;
+	align-items: center;
+	justify-content: center;
+	background-color: #1b2845;
+	background-image: linear-gradient(315deg, #2d333b 0%, #95c11f 74%);
+	background-size: 200% 100%;
+	background-position: left;
+	background-repeat: no-repeat;
+	transition: 500ms;
+    color: white;
+    font-family: "Lato", serif;
+    font-size: 20px;
+    margin-bottom: 50px;
+    margin-top: 90px;
+    padding: 10px;
+    text-decoration: none;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.actionBtn > a:hover,button:hover {
+	background-position: right;
+}
+
+.profileEditPage > input[type=text],
+.profileEditPage > input[type=number],
+.profileEditPage > input[type=email] {
+    color: grey;
+    font-size: 0.5em;
+    line-height: 1;
+    padding: 0.3em 0.4em;
+    margin: 0 0.5em 1em 0;
+}
+
+/*.profileEditText > input[type=text],*/
+/*.profileEditText > input[type=number],*/
+/*.profileEditText > input[type=email] {*/
+/*    color:gainsboro;*/
+/*    font-weight: bold;*/
+/*    font-size: 25px;*/
+/*    padding: 0.2em 10rem;*/
+/*}*/
+
+.password_change p {
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    padding-inline: 235px;
+    margin-top: revert;
+}
+
+.profileEditText p{
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    padding-inline: 25px;
+    margin-top: revert;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.profileEditText a{
+    color: lightgray;
+    font-weight: bold;
+    font-size: 19px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-radius: 3px;
+    box-shadow: none;
+    border: 1px solid #384049;
+    background: #15171b;
+    display: block;
+    width: inherit;
+}
+
+#Reset{
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    padding-inline: 15px;
+    margin-top: revert;
+    text-decoration: revert;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#profile_picture-clear_id{
+    position: initial;
+    margin-top: inherit;
+    position:absolute;
+    margin-left: -430px;
+}
+
+label:nth-of-type(2) {
+    margin-top: 21px;
+}
+
+#profile_picture-clear_id label{
+    position: initial;
+    color:red;
+}
+
+* {
+    box-sizing: border-box;
+    background: fixed;
+}
+
+.password_change a{
+    color: white;
+    font-size: 16px;
+}

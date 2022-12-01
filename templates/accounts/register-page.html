@@ -1,25 +1,3 @@
-{#{% extends 'base.html' %}#}
-{#{% load placeholders %}#}
-{##}
-{#{% block page_content %}#}
-{#    <div class="login-register-div">#}
-{#        <div class="login-register-box">#}
-{#            <h1>Service book</h1>#}
-{#            <form method="post" action="{% url 'register user' %}">#}
-{#                {{ form.username|placeholder:'Username: ' }}#}
-{#                {{ form.email|placeholder:'Email: ' }}#}
-{#                {{ form.password1|placeholder:'Password: ' }}#}
-{#                {{ form.password2|placeholder:'Repeat password: ' }}#}
-{#                <button type="submit">Register</button>#}
-{#                {% csrf_token %}#}
-{#                <div class="second-option">#}
-{#                    <p>Have an account? <a href="{% url 'login user' %}">Log in</a></p>#}
-{#                </div>#}
-{#            </form>#}
-{#        </div>#}
-{#    </div>#}
-{#{% endblock %}#}
-
 {% extends 'base.html' %}
 {% load static %}
 {% load placeholders %}
@@ -31,14 +9,6 @@
             <fieldset>
                 <legend>REGISTER</legend>
                 {{ form.as_p }}
-{#                <label for="id_username">Username:</label>#}
-{#                {{ form.username|placeholder:'Username: ' }}#}
-{#                <label for="id_email">Email:</label>#}
-{#                {{ form.email|placeholder:'Email: ' }}#}
-{#                <label for="id_password1">Password:</label>#}
-{#                {{ form.password1|placeholder:'Password: ' }}#}
-{#                <label for="id_password2">Repeat password:</label>#}
-{#                {{ form.password2|placeholder:'Repeat password: ' }}#}
                 <!-- Button to Create Profile -->
                 <input type="hidden" name="next" value="{{ next }}">
 
@@ -50,5 +20,4 @@
             </fieldset>
         </form>
     </section>
-    </div>
 {% endblock %}

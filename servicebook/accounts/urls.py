@@ -1,7 +1,9 @@
 from django.urls import path, include
+from .signals import *
+from django.contrib.auth import views as auth_views
 
 from servicebook.accounts.views import SignInView, RegisterView, SignOutView, \
-    UserDetailsView, UserEditView, UserDeleteView
+    UserDetailsView, UserEditView, UserDeleteView, password_change
 
 urlpatterns = (
     path('login/', SignInView.as_view(), name='login user'),
@@ -11,5 +13,12 @@ urlpatterns = (
         path('', UserDetailsView.as_view(), name='details user'),
         path('edit/', UserEditView.as_view(), name='edit user'),
         path('delete/', UserDeleteView.as_view(), name='delete user'),
+        # path('change_password/', password_change, name='password change'),
+        path('change_password/', auth_views.PasswordChangeView.as_view(
+            template_name='accounts/profile-change-password-page.html',
+            success_url='/'
+        ),
+             name='password change'
+             ),
     ])),
 )

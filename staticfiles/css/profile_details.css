@@ -1,9 +1,9 @@
-.wrapper {
-    height: 400px;
+.detailWrapper {
+    height: 420px;
     width: 1000px;
     border-radius: 7px 7px 7px 7px;
     box-shadow: 0 0 1.5px 3px gray;
-    margin: 30px auto 200px;
+    margin: 80px auto 200px;
 }
 
 .carCover, .profilePage {
@@ -27,16 +27,23 @@
 .carText h1, .profileText h1 {
     color:gainsboro;
     font-weight: bolder;
-    font-size: 28px;
+    font-size: 35px;
 }
 
-.carText p, .profileText p {
+.carText h2, .profileText h2 {
+    color:gainsboro;
+    font-weight: bold;
+    font-size: 25px;
+    padding: 0.2em 10rem;
+}
+
+.carText p, .profileText p, .profileText a {
     color:gainsboro;
     font-weight: bolder;
     font-size: 28px;
 }
 
-.carText > p, .profileText > p {
+.carText > p, .profileText > p, .profileText > a {
     height: auto;
     width: 100%;
     color: #9F9991;
@@ -56,7 +63,7 @@
     bottom: 0;
 }
 
-.actionBtn > a {
+.actionBtn > a, button {
 	width: 200%;
 	height: 50px;
 	cursor: pointer;
@@ -75,12 +82,12 @@
     font-family: "Lato", serif;
     font-size: 20px;
     margin-bottom: 10px;
-    margin-top: 170px;
+    margin-top: 90px;
     padding: 10px;
     text-decoration: none;
     margin-right: 50px;
 }
 
-.actionBtn > a:hover {
+.actionBtn > a:hover,button:hover {
 	background-position: right;
 }
