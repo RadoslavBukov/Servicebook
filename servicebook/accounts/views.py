@@ -10,7 +10,7 @@ from django.views import generic as views
 from django.contrib.auth import views as auth_views, get_user_model, login
 from django.contrib.auth.decorators import login_required
 
-from servicebook.accounts.forms import RegisterUserForm, EditUserForm
+from servicebook.accounts.forms import RegisterUserForm, EditUserForm, LoginForm
 from servicebook.accounts.models import Profile
 
 # Always get the *user model* with `get_user_model`
@@ -26,12 +26,17 @@ class RegisterView(views.CreateView):
     # Signs the user in, after successful regisration
     def form_valid(self, form):
         result = super().form_valid(form)
-
         login(self.request, self.object)
         return result
 
+    # def post(self, request, *args, **kwargs):
+    #     response = super().post(request, *args, **kwargs)
+    #     login(request, self.object)
+    #     return response
+
 
 class SignInView(auth_views.LoginView):
+    form_class = LoginForm
     template_name = 'accounts/login-page.html'
     success_url = reverse_lazy('index')
 
@@ -43,7 +48,7 @@ class SignOutView(auth_views.LogoutView, LoginRequiredMixin):
 class UserDetailsView(views.DetailView, LoginRequiredMixin):
     template_name = 'accounts/profile-details-page.html'
     model = UserModel
-    form_class = EditUserForm
+    # form_class = EditUserForm
 
     # profile = Profile.objects.filter(pk=object.id).get()
     def get_context_data(self, **kwargs):
@@ -62,6 +67,7 @@ class UserDetailsView(views.DetailView, LoginRequiredMixin):
 class UserEditView(views.UpdateView, LoginRequiredMixin):
     template_name = 'accounts/profile-edit-page.html'
     model = Profile
+    # form_class = EditUserForm
     fields = ('first_name', 'last_name', 'date_of_birth', 'profile_picture')
 
     def get_success_url(self):
@@ -71,7 +77,6 @@ class UserEditView(views.UpdateView, LoginRequiredMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         profile = Profile.objects.filter(pk=self.request.user).get()
 
         context['profile_picture'] = profile.profile_picture

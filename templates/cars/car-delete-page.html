@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!--Delete Page-->
+    <section id="carDeletePage">
+        <div class="carDeleteText">
+            <!-- Profile Info -->
+            <h1>DELETE CAR</h1>
+            <div class="card-box">
+                {% if car.car_photo %}
+                    <img src="{{ car.car_photo }}" alt="car_picture">
+                {% else %}
+                    <img src="{% static 'images/car.png'%}">
+                {% endif %}
+                <div class="text-center">
+                    <p class="car_text">{{ brand }} {{ model }}</p>
+                </div>
+            </div>
+            <h2>Are you sure you want to delete this car?</h2>
+            <!-- Delete buttons -->
+            <div class="actionBtn">
+                <form method="post" action="{% url 'delete car' user_id=user_id car_slug=car_slug %}">
+                    {{ form }}
+                    <a href="{% url 'details car' user_id=user_id car_slug=car_slug %}" class="cancel">Cancel</a>
+                    <button type="submit" class="delete">Delete</button>
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

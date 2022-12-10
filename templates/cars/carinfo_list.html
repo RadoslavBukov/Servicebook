@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if not object_list %}
+        <!-- Display paragraph: If there are no cars yet-->
+        <p class="no-articles">No cars yet</p>
+    {% else %}
+        <!-- Display div "car" with information about every car (if any)-->
+        <section id="catalogPage">
+            <h1>Total cars: {{ cars_count }}</h1>
+            {% for car in object_list %}
+                <div class="card-box">
+                    {% if car.car_photo %}
+                        <img src="{{ car.car_photo }}" alt="car_picture">
+                    {% else %}
+                        <img src="{% static 'images/car.png'%}">
+                    {% endif %}
+                    <div>
+                        <div class="text-center">
+                            <p class="car_text">{{ car.brand }}</p>
+                            <p class="car_text">{{ car.model }}</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="{% url 'details car' user_id=car.user_id car_slug=car.slug %}">Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+        <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+        </div>
+    {% endif %}
+{% endblock %}

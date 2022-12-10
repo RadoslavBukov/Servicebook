@@ -27,7 +27,8 @@
             <ul>
                 <!--Only for user with created profile-->
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'index' %}">Create Car</a></li>
+                    <li><a href="{% url 'cars list' %}">My Cars</a></li>
+                    <li><a href="{% url 'register car' %}">Create Car</a></li>
                     <li><a href="{% url 'details user' pk=request.user.pk %}">Profile</a></li>
                     <li><a href="{% url 'logout user' %}">Log Out</a></li>
                 {% else %}

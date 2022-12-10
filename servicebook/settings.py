@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'servicebook.web',
     'servicebook.core',
     'servicebook.accounts',
+    'servicebook.cars',
 
 ]
 

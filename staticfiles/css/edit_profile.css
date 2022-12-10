@@ -47,7 +47,7 @@
     width: 100%;
     color: #9F9991;
     line-height: 1.6em;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
     margin-right: 20px;
 }
@@ -122,7 +122,6 @@
 .profileEditText p{
     color: white;
     font-weight: bold;
-    font-size: 25px;
     padding-inline: 25px;
     margin-top: revert;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -164,7 +163,6 @@ label:nth-of-type(2) {
 
 #profile_picture-clear_id label{
     position: initial;
-    color:red;
 }
 
 * {

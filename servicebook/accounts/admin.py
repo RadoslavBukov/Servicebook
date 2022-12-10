@@ -14,7 +14,7 @@ class AppUserAdmin(auth_admin.UserAdmin):
     ordering = ('email',)
     list_display = ['email', 'date_joined', 'last_login',]
     list_filter = ()
-    inlines = [UserProfileInline, ]
+    # inlines = [UserProfileInline, ]
     form = EditUserForm
     add_form = RegisterUserForm
     add_fieldsets = (

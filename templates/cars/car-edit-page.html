@@ -7,13 +7,13 @@
     <section id="editPage">
         <div class="editWrapper">
             <div class="profileEditPage">
-                {% if profile_picture %}
-                    <img src= "/media/{{ profile_picture }}" alt="Profile Image">
+                {% if car_photo %}
+                    <img src= {{ car_photo }} alt="ProfileImage">
                 {% else %}
-                    <img src="{% static 'images/person.png'%}" alt="Empty Profile Image">
+                    <img src="{% static 'images/car.png'%}" alt="Empty Profile Image">
                 {% endif %}
             </div>
-            <form method="post" action="{% url 'edit user' pk=object.pk %}" enctype="multipart/form-data">
+            <form method="post" action="{% url 'edit car' user_id=user_id car_slug=car_slug %}" enctype="multipart/form-data">
                 <div class="profileEditText">
                     <!-- Profile Info -->
                     <h1>EDIT PROFILE</h1>
@@ -33,8 +33,7 @@
                 <input type="hidden" name="next" value="{{ next }}">
                 <div class="actionBtn">
                     <button type="submit" class="edit-button">Save</button>
-                    <a href="{% url 'delete user' pk=object.pk %}" class="delete-button">Delete</a>
-                    <a href="{% url 'details user' pk=object.pk %}" class="edit-button">Cancel</a>
+                    <a href="{% url 'details car' user_id=user_id car_slug=car_slug %}" class="edit-button">Cancel</a>
                     {% csrf_token %}
                 </div>
 

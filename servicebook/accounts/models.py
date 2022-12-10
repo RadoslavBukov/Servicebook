@@ -54,8 +54,15 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
     )
 
+    # user = models.ForeignKey(
+    #     AppUser,
+    #     on_delete=models.RESTRICT,
+    # )
+
+
+
     def get_full_name(self):
-        full_name = "%s %s" % (self.first_name, self.last_name)
+        full_name = f"{self.first_name} {self.last_name}"
         # if 'None' in full_name:
         #     full_name.replace('None', '')
         return full_name.strip()
