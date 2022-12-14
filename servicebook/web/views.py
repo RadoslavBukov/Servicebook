@@ -17,4 +17,4 @@ def index(request):
     return render(request, 'core/index.html', context)
 
 def error(request):
-    return render(request, 'core/404_1.html')
+    return render(request, 'core/404.html')

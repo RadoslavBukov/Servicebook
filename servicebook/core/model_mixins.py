@@ -1,3 +1,6 @@
+from django.http import HttpResponseForbidden
+
+
 class StrFromFieldsMixin:
     str_fields = ()
 
@@ -14,3 +17,10 @@ class ChoicesEnumMixin:
     @classmethod
     def max_len(cls):
         return max(len(name) for name, _ in cls.choices())
+
+
+class UserOwnerMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        if self.object.user != self.request.user:
+            return HttpResponseForbidden()
+        return super(UserOwnerMixin, self).dispatch(request, *args, **kwargs)

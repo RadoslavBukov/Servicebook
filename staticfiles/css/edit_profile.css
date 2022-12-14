@@ -170,7 +170,11 @@ label:nth-of-type(2) {
     background: fixed;
 }
 
-.password_change a{
-    color: white;
-    font-size: 16px;
+.container h3{
+    color: gainsboro;
+    font-weight: bolder;
+    font-size: 35px;
+    padding-top: 20px;
+    margin-bottom: 120px;
 }
+

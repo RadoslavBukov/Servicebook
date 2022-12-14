@@ -13,29 +13,29 @@ from servicebook.core.model_mixins import ChoicesEnumMixin
 UserModel = get_user_model()
 
 class CarBrand(ChoicesEnumMixin, Enum):
-    AUDI = 'Audi'
+    Audi = 'Audi'
     BMW = "BMW"
     Ford = "Ford"
     VW = "Volkswagen"
-    HONDA = "Honda"
-    MAZDA = "Mazda"
-    MERCEDES = "Mercedes"
-    MITSUBISHI = "Mitsubishi"
-    TOYOTA = "Toyota"
-    SUBARU = "Subaru"
-    SUZUKI = "Suzuki"
-    JEEP = "Jeep"
-    OPEL = "Opel"
-    NISSAN = "Nissan"
-    RENAULT = "Renault"
+    Honda = "Honda"
+    Mazda = "Mazda"
+    Mercedes = "Mercedes"
+    Mitsubishi = "Mitsubishi"
+    Toyota = "Toyota"
+    Subaru = "Subaru"
+    Suzuki = "Suzuki"
+    Jeep = "Jeep"
+    Opel = "Opel"
+    Nissan = "Nissan"
+    Renault = "Renault"
     Other = "Other"
 
 
 class CarTaxes(ChoicesEnumMixin, Enum):
-    INSURANCE = 'Insurance'
-    INSPECTION = "Inspection"
-    TAX = "Tax"
-    VIGNETTE = "Vignette"
+    Insurance = 'Insurance'
+    Inspection = "Inspection"
+    Tax = "Tax"
+    Vignette = "Vignette"
     Other = "Other"
 
 
@@ -137,11 +137,27 @@ class CarTaxes(models.Model):
     car = models.ForeignKey(
         CarInfo,
         on_delete=models.RESTRICT,
+        null=False,
+        blank=True,
     )
+
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.RESTRICT,
+    )
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        days_to_expiry = self.valid_to - date.today()
+        self.days_to_expiry = days_to_expiry.days
+
+        return super().save(*args, **kwargs)
 
 
 class CarService(models.Model):
     MAX_LEN_CHARFIELD = 20
+    MAX_TEXT_LENGTH = 300
 
     date_of_service = models.DateField(
         null=True,
@@ -154,18 +170,18 @@ class CarService(models.Model):
         null=True,
         blank=True,
     )
-    symptoms = models.CharField(
-        max_length=MAX_LEN_CHARFIELD,
+    symptoms = models.TextField(
+        max_length=MAX_TEXT_LENGTH,
         null=True,
         blank=True,
     )
-    root_cause = models.CharField(
-        max_length=MAX_LEN_CHARFIELD,
+    root_cause = models.TextField(
+        max_length=MAX_TEXT_LENGTH,
         null=True,
         blank=True,
     )
-    repair = models.CharField(
-        max_length=MAX_LEN_CHARFIELD,
+    repair = models.TextField(
+        max_length=MAX_TEXT_LENGTH,
         null=True,
         blank=True,
     )
@@ -175,6 +191,13 @@ class CarService(models.Model):
     )
     car = models.ForeignKey(
         CarInfo,
+        on_delete=models.RESTRICT,
+        null=False,
+        blank=True,
+    )
+
+    user = models.ForeignKey(
+        UserModel,
         on_delete=models.RESTRICT,
     )
 

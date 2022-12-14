@@ -5,7 +5,7 @@ from django.contrib.auth.forms import SetPasswordForm, AuthenticationForm, Usern
 from django.forms.widgets import DateInput
 from django.shortcuts import render
 
-from servicebook.cars.models import CarInfo
+from servicebook.cars.models import CarInfo, CarTaxes, CarService
 from servicebook.core.form_mixins import DisabledFormMixin
 
 UserModel = get_user_model()
@@ -106,6 +106,85 @@ class EditCarForm(DisabledFormMixin, CarBaseForm):
 
 
 class CarDeleteForm(CarBaseForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__set_hidden_fields()
+
+    def save(self, commit=True):
+        if commit:
+
+            CarTaxes.objects.filter(car_id=self.instance.id) \
+                .delete()  # one-to-many
+            CarService.objects.filter(car_id=self.instance.id) \
+                .delete()  # one-to-many
+
+            self.instance.delete()
+        return self.instance
+
+    def __set_hidden_fields(self):
+        for _, field in self.fields.items():
+            field.widget = forms.HiddenInput()
+
+class TaxCreateForm(forms.ModelForm):
+    class Meta:
+        model = CarTaxes
+        fields = ('type', 'valid_to', 'price')
+        labels = {
+            'type': 'Type:',
+            'valid_to': 'Valid to:',
+            'price': 'Price:',
+        }
+        # widgets = {
+        #     'type': forms.ChoiceField(
+        #     ),
+        #     'valid_to': forms.DateInput(
+        #     ),
+        #     'price': forms.IntegerField(
+        #     ),
+        # }
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['type'].widget.attrs.update({'placeholder': 'Type'})
+            self.fields['valid_to'].widget.attrs.update({'placeholder': 'Valid to'})
+            self.fields['valid_to'].help_text = "Date should be in format yyyy-mm-dd"
+            self.fields['price'].widget.attrs.update({'placeholder': 'price'})
+
+
+class TaxDeleteForm(TaxCreateForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__set_hidden_fields()
+
+    def save(self, commit=True):
+        if commit:
+            self.instance.delete()
+        return self.instance
+
+    def __set_hidden_fields(self):
+        for _, field in self.fields.items():
+            field.widget = forms.HiddenInput()
+
+
+class ServiceCreateForm(forms.ModelForm):
+    class Meta:
+        model = CarService
+        fields = ('date_of_service', 'mileage', 'symptoms', 'root_cause', 'repair', 'price')
+        # labels = {
+        #     'date_of_service': 'Date:',
+        #     'milage': 'Milage:',
+        #     'symptoms': 'Symptoms:',
+        #     'root_cause': 'Root cause:',
+        #     'repair': 'Repair:',
+        #     'price': 'Price:',
+        #
+        # }
+        widgets = {'date_of_service': forms.DateInput}
+
+
+class ServiceDeleteForm(TaxCreateForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

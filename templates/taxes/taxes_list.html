@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if not taxes %}
+        <!-- Display paragraph: If there are no cars yet-->
+        <p class="no-articles">No taxes yet</p>
+        {#        <form method="post" action="{% url 'add tax' user_id=car.user_id car_slug=car.slug %}">#}
+        {#            {{ add_tax_form }}#}
+        {#            <button type="submit">Post</button>#}
+        {#            {% csrf_token %}#}
+        {#        </form>#}
+        {#        <form method="post" class="form-inline" action="{% url 'add tax' user_id=car.user_id car_slug=car.slug %}">#}
+        {#            {{ add_tax_form }}#}
+        {#            <button type="submit">Submit</button>#}
+        {#            {% csrf_token %}#}
+        {#        </form>#}
+    {% else %}
+        <!-- Display div "car" with information about every car (if any)-->
+        <section id="catalogPage">
+        <div class="tax-box">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Valid to</th>
+                    <th scope="col">Days to expire</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tax in taxes %}
+                    <tr>
+                        {#                        <th scope="row">1</th>#}
+                        <td>{{ tax.type }}</td>
+                        <td>{{ tax.valid_to }}</td>
+                        {% if tax.days_to_expiry < 31 %}
+                            <td style="color:red"> {{ tax.days_to_expiry }} </td>
+                        {% else %}
+                            <td>{{ tax.days_to_expiry }}</td>
+                        {% endif %}
+                        <td>{{ tax.price }} лв.</td>
+                        <td>
+                            <form method="post" class="form-inline" action="{% url 'delete car tax' user_id=car.user_id car_slug=car.slug tax_id=tax.id %}">
+                                {{ del_form }}
+                                {#                                    <button type="submit"><img src="{% static 'images/icon-remove.jpg'%}" class="icon" alt="Submit"></button>#}
+                                <input type="image" id="iconimage" src="{% static 'images/icon-remove.jpg'%}" />
+                                {#                                    <button type="submit" class="delete">Del</button>#}
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+
+        </div>
+    {% endif %}
+<a href="{% url 'details car' user_id=car.user_id car_slug=car.slug %}" class="add">Back to car</a>
+<form method="post" class="form-inline" action="{% url 'add tax' user_id=car.user_id car_slug=car.slug %}">
+    {{ add_tax_form }}
+    <button type="submit">Add tax</button>
+    {% csrf_token %}
+</form>
+</section>
+{% endblock %}

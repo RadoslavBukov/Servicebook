@@ -25,6 +25,7 @@
             <input type="hidden" name="next" value="{{ next }}">
             <div class="actionBtn">
                 <a href="{% url 'edit user' pk=object.pk %}" class="edit-button">Edit</a>
+                <a href="{% url 'password change' pk=object.pk %}" class="password">Password</a>
                 <a href="{% url 'delete user' pk=object.pk %}" class="delete-button">Delete</a>
             </div>
 

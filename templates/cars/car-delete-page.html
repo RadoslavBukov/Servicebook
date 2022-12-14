@@ -8,8 +8,8 @@
             <!-- Profile Info -->
             <h1>DELETE CAR</h1>
             <div class="card-box">
-                {% if car.car_photo %}
-                    <img src="{{ car.car_photo }}" alt="car_picture">
+                {% if car_photo %}
+                    <img src="{{ car_photo }}" alt="car_picture">
                 {% else %}
                     <img src="{% static 'images/car.png'%}">
                 {% endif %}

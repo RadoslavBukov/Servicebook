@@ -24,8 +24,8 @@
             <!-- Edit/Delete buttons -->
             <input type="hidden" name="next" value="{{ next }}">
             <div class="actionCarBtn">
-                <a href="{% url 'taxes car' user_id=car.user_id car_slug=car.slug %}" class="edit-button">Taxes</a>
-                <a href="{% url 'service car' user_id=car.user_id car_slug=car.slug %}" class="edit-button">Service</a>
+                <a href="{% url 'taxes list' user_id=car.user_id car_slug=car.slug %}" class="edit-button">Taxes</a>
+                <a href="{% url 'services list' user_id=car.user_id car_slug=car.slug %}" class="edit-button">Service</a>
                 <a href="{% url 'edit car' user_id=car.user_id car_slug=car.slug %}" class="edit-button">Edit</a>
                 <a href="{% url 'delete car' user_id=car.user_id car_slug=car.slug %}" class="delete-button">Delete</a>
             </div>

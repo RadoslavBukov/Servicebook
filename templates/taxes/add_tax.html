@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load placeholders %}
+
+{% block content %}
+    <!-- Registration -->
+    <section id="registerPage">
+        <form method="post" action="{% url 'add tax' %}">
+            <fieldset>
+                <legend>Add Tax</legend>
+                {{ form }}
+                <!-- Button to Create Profile -->
+                <input type="hidden" name="next" value="{{ next }}">
+                <button type="submit" class="register">Add</button>
+                {% csrf_token %}
+            </fieldset>
+        </form>
+    </section>
+{% endblock %}
