@@ -103,11 +103,12 @@ class EditUserForm(auth_forms.UserChangeForm):
 
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'date_of_birth', 'profile_picture')
-        field_classes = {
+        fields = '__all__'
+        # fields = ('first_name', 'last_name', 'date_of_birth', 'profile_picture')
+        # field_classes = {
             # 'username': auth_forms.UsernameField,
             # 'profile_picture': forms.DateField,
-        }
+        # }
 
         # labels = {
         #     'first_name': 'First Name',
@@ -116,16 +117,37 @@ class EditUserForm(auth_forms.UserChangeForm):
         #     'profile_picture': 'Upload Image',
         # }
         #
-        # widgets = {'date_of_birth': forms.DateInput}
+        widgets = {
+                    'first_name': forms.TextInput(
+                        attrs={
+                            'class': 'form_control',
+                            'placeholder': 'First name'
+                        }
+                    ),
+                    'last_name': forms.TextInput(
+                        attrs={
+                            'placeholder': 'Last name'
+                        }
+                    ),
+                    'date_of_birth': forms.DateInput(
+                        attrs={
+                            'placeholder': 'mm/dd/yyyy',
+                            'type': 'date',
+                        }
+                    ),
+                    'profile_picture': forms.ImageField(
+                        required=False
+                    ),
+                }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs.update({'placeholder': 'Enter your First name'})
-        self.fields['last_name'].widget.attrs.update({'placeholder': 'Enter your Last name'})
-        self.fields['date_of_birth'].widget.attrs.update({'placeholder': 'Enter your Date of birth'})
-        self.fields['date_of_birth'].help_text = "Note: Date should be in format YYYY-MM-DD !"
-        self.fields['profile_picture'].widget.attrs.update({'placeholder': 'Profile picture'})
-        self.fields['password'].help_text = None
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['first_name'].widget.attrs.update({'placeholder': 'Enter your First name'})
+    #     self.fields['last_name'].widget.attrs.update({'placeholder': 'Enter your Last name'})
+    #     self.fields['date_of_birth'].widget.attrs.update({'placeholder': 'Enter your Date of birth'})
+    #     self.fields['date_of_birth'].help_text = "Note: Date should be in format YYYY-MM-DD !"
+    #     self.fields['profile_picture'].widget.attrs.update({'placeholder': 'Profile picture'})
+    #     self.fields['password'].help_text = None
 
 # save the data for profile
 #     def save(self, commit=True):

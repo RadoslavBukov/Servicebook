@@ -1,0 +1,1 @@
+from .register_view_tests import *

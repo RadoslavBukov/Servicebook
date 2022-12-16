@@ -56,7 +56,7 @@ label[for="female"] {
 }
 
 input[type="number"],
-/*input[type="password"],*/
+input[type="password"],
 input[type="email"],
 input[type="text"],
 input[type="url"]{
@@ -69,7 +69,7 @@ input[type="url"]{
     box-shadow: inset 6px 6px 6px #c0c2c5, inset -6px -6px 6px white;
 }
 
-input[type="password"]{
+input[type="password2"]{
     background: #ecf0f3;
     padding: 20px 20px 20px 20px;
     height: 50px;
@@ -234,6 +234,7 @@ p {
 
 .form-inline button:hover {
     background-position: right;
+}
 
 /* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
 @media (max-width: 800px) {

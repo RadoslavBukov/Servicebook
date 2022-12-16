@@ -162,7 +162,8 @@
 }
 
 .actionBtn > a:hover,button:hover {
-	background-position: right;
+    background-position: right;
+}
 
 
 .cancel_car, .delete_car {
