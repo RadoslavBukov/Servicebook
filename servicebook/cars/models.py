@@ -1,11 +1,11 @@
-from django.contrib.auth import models as auth_models, get_user_model
+from django.contrib.auth import get_user_model
 from datetime import date
 from django.db import models
 from enum import Enum
 from django.utils.text import slugify
 
 from servicebook.accounts.models import AppUser
-from servicebook.accounts.validators import validate_file_less_than_5mb, validate_date_is_not_in_future
+from servicebook.accounts.validators import validate_date_is_not_in_future
 from servicebook.cars.validators import validate_string_min_2_symbols, validate_year_between_1970_and_2022, \
     validate_date_is_not_in_past
 from servicebook.core.model_mixins import ChoicesEnumMixin
@@ -88,25 +88,13 @@ class CarInfo(models.Model):
         on_delete=models.RESTRICT,
     )
 
-    # def __str__(self):
-    #     if not (self.brand and self.model):
-    #         return f" id: {self.user_id}"
-    #     brand_model = "%s %s" % (self.brand, self.model)
-    #     return brand_model.strip()
 
     def save(self, *args, **kwargs):
-        # Create/Update
         super().save(*args, **kwargs)
 
         if not self.slug:
             self.slug = slugify(f'{self.id}-{self.model}')
 
-        # Without the `if` the following scenario might happen:
-        # The url is `/pets/4-stamat`
-        # Rename `stamat` to `stamata`
-        # The new url is `/pets/4-stamata`, but `/pets/4-stamat` does not work
-
-        # Update
         return super().save(*args, **kwargs)
 
 class CarTaxes(models.Model):

@@ -18,17 +18,7 @@
                     <!-- Profile Info -->
                     <h1>EDIT PROFILE</h1>
                     {{ form.as_p }}
-{#                    <input type="date" id="start" name="trip-start"#}
-{#                           value="2018-07-22"#}
-{#                           min="1920-01-01" max="2022-11-31">#}
-                    {#                    <h2>First name: {{ form.first_name | placeholder:'First name' }}</h2>#}
-                    {#                    <h2>Last name: {{ form.last_name }}</h2>#}
-                    {#                    <h2>Date of birth: {{ form.date_of_birth }}</h2>#}
-                    {#                    <h2>Profile picture: {{ form.profile_picture }}</h2>#}
                 </div>
-                {#                <div class="password_change">#}
-                {#                    <p>Password: <a href="{% url 'index' %}" id="Reset">Reset</a></p>#}
-                {#            </form>#}
                 <!-- Edit/Delete buttons -->
                 <input type="hidden" name="next" value="{{ next }}">
                 <div class="actionBtn">

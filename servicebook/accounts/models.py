@@ -1,6 +1,5 @@
 from django.contrib.auth import models as auth_models
 from django.db import models
-from django.utils import timezone
 import datetime
 
 from servicebook.accounts.managers import AppUserManager
@@ -20,7 +19,6 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         default=False,
     )
 
-    # User credentials consist of `email` and `password`
     USERNAME_FIELD = 'email'
 
     objects = AppUserManager()
@@ -29,13 +27,9 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 class Profile(models.Model):
     first_name = models.CharField(
         max_length=25,
-        # null=True,
-        # blank=True,
     )
     last_name = models.CharField(
         max_length=25,
-        # null=True,
-        # blank=True,
     )
     date_of_birth = models.DateField(
         null=True,
@@ -54,17 +48,10 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
     )
 
-    # user = models.ForeignKey(
-    #     AppUser,
-    #     on_delete=models.RESTRICT,
-    # )
-
-
 
     def get_full_name(self):
         full_name = f"{self.first_name} {self.last_name}"
-        # if 'None' in full_name:
-        #     full_name.replace('None', '')
+
         return full_name.strip()
 
     def __str__(self):

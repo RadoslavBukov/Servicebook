@@ -11,15 +11,3 @@ def connect_user_to_profile_by_id(get_response):
 
     return middleware
 
-
-# def login_required_middleware(get_response):
-#     def middleware(request, *args, **kwargs):
-#         # check if this is the `login` page
-#         if not request.user.is_authenticated:
-#             return redirect('admin:login')
-#
-#         return get_response(request, *args, **kwargs)
-#
-#     return middleware
-
-

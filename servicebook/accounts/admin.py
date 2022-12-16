@@ -25,13 +25,6 @@ class AppUserAdmin(auth_admin.UserAdmin):
                 "fields": ("email", "password1", "password2"),
             },
         ),
-    #     (
-    #         None,
-    #         {
-    #             "classes": ("wide",),
-    #             "fields": ("first_name", "last_name", "date_of_birth", "profile_picture"),
-    #         },
-    #     ),
     )
 
     fieldsets = (
@@ -43,17 +36,6 @@ class AppUserAdmin(auth_admin.UserAdmin):
                     'password',
                 ),
             }),
-        # (
-        #     'Personal info',
-        #     {
-        #         'fields': (
-        #             'first_name',
-        #             'last_name',
-        #             'date_of_birth',
-        #             'profile_picture'
-        #         ),
-        #     },
-        # ),
         (
             'Permissions',
             {

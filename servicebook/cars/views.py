@@ -1,26 +1,22 @@
 from django.http import HttpResponseForbidden
-from django.shortcuts import render, redirect
-import profile
+from django.shortcuts import redirect
 
-from django.contrib.auth.forms import SetPasswordForm, PasswordChangeForm
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 from django.urls import reverse_lazy
 from django.views import generic as views
-from django.contrib.auth import views as auth_views, get_user_model, login
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 
-from servicebook.cars.models import CarInfo, CarTaxes, CarService
+from servicebook.cars.models import CarInfo
 from servicebook.cars.forms import RegisterCarForm, EditCarForm, CarDeleteForm,\
     TaxCreateForm, TaxDeleteForm, ServiceCreateForm, ServiceDeleteForm
 from servicebook.cars.utils import get_car_by_slug_and_userid, get_taxes_by_carid_and_userid, \
     get_tax_by_taxid, get_services_by_carid_and_userid, get_service_by_serviceid, user_is_owner
-from servicebook.core.model_mixins import UserOwnerMixin
-from servicebook.core.utils import is_owner
 
-# Always get the *user model* with `get_user_model`
+
 UserModel = get_user_model()
 
 
@@ -32,25 +28,6 @@ class RegisterCarView(views.CreateView, LoginRequiredMixin):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-
-# @login_required
-# def add_car(request):
-#     if request.method == 'GET':
-#         form = RegisterCarForm()
-#     else:
-#         form = RegisterCarForm(request.POST)
-#         if form.is_valid():
-#             car = form.save(commit=False)
-#             car.user = request.user
-#             car.save()
-#             return redirect('cars list', pk=request.user.pk)
-#
-#     context = {
-#         'form': form,
-#     }
-#
-#     return render(request, 'cars/car-create-page.html', context)
-
 
 
 class CarsListView(views.ListView, LoginRequiredMixin):
@@ -70,16 +47,6 @@ class CarsListView(views.ListView, LoginRequiredMixin):
         context['cars_count'] = cars_count.count()
 
         return context
-
-# class CarInfoView(views.DetailView, LoginRequiredMixin):
-#     template_name = 'cars/car-details-page.html'
-#     model = CarInfo
-#     # form_class = EditCarForm
-#
-#     def get_queryset(self):
-#         queryset = super(CarInfoView, self).get_queryset()
-#         x = queryset.filter(slug=CarInfo.slug, user_id=self.request.user)
-#         return queryset.filter(user_id=self.request.user)
 
 
 @login_required()
@@ -243,23 +210,6 @@ def details_car_taxes(request, user_id, car_slug):
         context,
     )
 
-# class TaxesListView(views.ListView, LoginRequiredMixin):
-#     template_name = 'taxes/taxes_list.html'
-#     model = CarTaxes
-#
-#
-#     def get_queryset(self):
-#         query_set = CarTaxes.objects.filter(user_id=self.request.user.id)
-#         return query_set
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#
-#         cars_taxes = CarTaxes.objects.filter(user_id=self.request.user.id)
-#         context['cars_taxes'] = cars_taxes
-#
-#         return context
-
 
 @login_required
 def add_car_service(request, user_id, car_slug):
@@ -287,6 +237,7 @@ def add_car_service(request, user_id, car_slug):
 
     return render(request, 'taxes/services_list.html', context)
 
+
 @login_required
 def delete_car_service(request, user_id, car_slug, service_id):
     car = get_car_by_slug_and_userid(car_slug, user_id)
@@ -312,22 +263,6 @@ def delete_car_service(request, user_id, car_slug, service_id):
 
     return render(request, 'taxes/services_list.html', context)
 
-# class TaxesListView(views.ListView, LoginRequiredMixin):
-#     template_name = 'taxes/taxes_list.html'
-#     model = CarTaxes
-#
-#
-#     def get_queryset(self):
-#         query_set = CarTaxes.objects.filter(user_id=self.request.user.id)
-#         return query_set
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#
-#         cars_taxes = CarTaxes.objects.filter(user_id=self.request.user.id)
-#         context['cars_taxes'] = cars_taxes
-#
-#         return context
 
 @login_required()
 def details_car_service(request, user_id, car_slug):
@@ -353,6 +288,3 @@ def details_car_service(request, user_id, car_slug):
         'taxes/services_list.html',
         context,
     )
-
-
-# Asdf123!@

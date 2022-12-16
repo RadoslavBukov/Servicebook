@@ -15,9 +15,3 @@ def create_profile_on_user_created(instance, created, *args, **kwargs):
     Profile.objects.create(
         user_id=instance.pk,
     )
-
-
-# @receiver(signals.post_save, sender=UserModel)
-# def send_register_email_on_create(instance, created, *args, **kwargs):
-#     if not created:
-#         return
