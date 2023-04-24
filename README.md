@@ -3,39 +3,27 @@
 ## Project Requrements:
 Your Web application should use the following technologies, frameworks, and development techniques:
 ### General:
-<ul>The application must be implemented using **Django Framework**
-  <li>The application must have at least **10 web pages**:
-    <ul>
-      <li>Can be created using **function-based views** or/and **class based-views**;</li>
-      <li>At least **5 of them must be class-based views**.</li>
-    </ul>
-  </li>
-  -	The application must have at least **5 independent models** (models created by extending, inheritance, and one-to-one relation is considered one model).
-  -	The application must have at least **5 forms**.
-  -	The application must have at least **5 templates**.
-</ul>
-  
  <ul>
-  <li>Coffee</li>
-  <li>Tea
+  <li>The application must be implemented using **Django Framework**</li>
     <ul>
-      <li>Black tea</li>
-      <li>Green tea</li>
+      <li>The application must have at least **10 web pages**:</li>
       <ul>
-        <li>Black tea</li>
-        <li>Green tea</li>
+        <li>Can be created using **function-based views** or/and **class based-views**;</li>
+        <li>At least **5 of them must be class-based views**.</li>
       </ul>
+      <li>The application must have at least **5 independent models** (models created by extending, inheritance, and one-to-one relation is considered one model).</li>
+      <li>The application must have at least **5 forms**.</li>
+      <li>The application must have at least **5 templates**.</li>
     </ul>
   </li>
-  <li>Milk</li>
 </ul>
 
-2.	Use **PostgreSQL** as a **Database Service**.
+-	Use **PostgreSQL** as a **Database Service**.
   -	Optionally, you can use **multiple storages** (including PostgreSQL), e.g., files, other Web services, databases (e.g., **MySQL/MariaDB/Oracle** / etc.)
 
-3.	Use **Django Template Engine** or make the **Front-End** using **JavaScript**.
-4.	**Templates** (your views must return HTML files) - **the same template could be re-used/ used multiple times** (with the according to adjustments, if such needed).
-5.	Implement **Web Page Design** based on **Bootstrap / Google Material Design**, or **design your own**.
+-	Use **Django Template Engine** or make the **Front-End** using **JavaScript**.
+-	**Templates** (your views must return HTML files) - **the same template could be re-used/ used multiple times** (with the according to adjustments, if such needed).
+-	Implement **Web Page Design** based on **Bootstrap / Google Material Design**, or **design your own**.
 
 -	The application must have login/register/logout functionality.
 -	The application must have a public part (A part of the website, which is accessible by everyone - un/authenticated users and admins).
