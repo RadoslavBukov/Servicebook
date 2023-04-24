@@ -21,6 +21,10 @@ Your Web application should use the following technologies, frameworks, and deve
     <ul>
       <li>Black tea</li>
       <li>Green tea</li>
+      <ul>
+        <li>Black tea</li>
+        <li>Green tea</li>
+      </ul>
     </ul>
   </li>
   <li>Milk</li>
