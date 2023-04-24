@@ -3,7 +3,7 @@
 ## Project Requrements:
 Your Web application should use the following technologies, frameworks, and development techniques:
 ### General:
--	The application must be implemented using Django Framework
+1	The application must be implemented using Django Framework
   -	The application must have at least 10 web pages:
     -	Can be created using function-based views or/and class based-views;
     -	At least 5 of them must be class-based views.
