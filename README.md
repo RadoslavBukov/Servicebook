@@ -3,13 +3,13 @@
 ## Project Requrements:
 Your Web application should use the following technologies, frameworks, and development techniques:
 ### General:
-•	The application must be implemented using Django Framework
-  o	The application must have at least 10 web pages:
-    	Can be created using function-based views or/and class based-views;
-    	At least 5 of them must be class-based views.
-  o	The application must have at least 5 independent models (models created by extending, inheritance, and one-to-one relation is considered one model).
-  o	The application must have at least 5 forms.
-  o	The application must have at least 5 templates.
+-	The application must be implemented using Django Framework
+  -	The application must have at least 10 web pages:
+    -	Can be created using function-based views or/and class based-views;
+    -	At least 5 of them must be class-based views.
+  -	The application must have at least 5 independent models (models created by extending, inheritance, and one-to-one relation is considered one model).
+  -	The application must have at least 5 forms.
+  -	The application must have at least 5 templates.
 
 •	Use PostgreSQL as a Database Service
   o	Optionally, you can use multiple storages (including PostgreSQL), e.g., files, other Web services, databases (e.g., MySQL/MariaDB/Oracle / etc.)
