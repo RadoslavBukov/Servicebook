@@ -39,9 +39,9 @@ Your Web application should use the following technologies, frameworks, and deve
  	-	User **roles** could be **manageable** from the admin site.
  	-	Make sure the **role management** is **secured** and **error-safe**.
 
--	Implement **Exception Handling** and **Data Validation** to avoid **crashes** when **invalid data** is entered 
-(both **client-side** and **server-side**)
-  -	When validating data, show appropriate messages to the user.
+- Implement **Exception Handling** and **Data Validation** to avoid **crashes** when **invalid data** is entered 
+(both **client-side** and **server-side**).
+  - When validating data, show appropriate messages to the user.
  
 ### Additional:
 -	Follow the **best practices** for **Object-Oriented design** and **high-quality code** for the **Web application**:
