@@ -44,25 +44,33 @@ Your Web application should use the following technologies, frameworks, and deve
   -	When validating data, show appropriate messages to the user.
  
 ### Additional:
-•	Follow the **best practices** for **Object-Oriented design** and **high-quality code** for the **Web application**:
-  o	Use **data encapsulation**.
-  o	Use **exception handling** properly.
-  o	Use **inheritance, abstraction, and polymorphism** properly.
-  o	Follow the **principles of strong cohesion** and **loose coupling**.
-  o	Correctly **format and structure** your code, name your **identifiers** and make the code **readable**.
+-	Follow the **best practices** for **Object-Oriented design** and **high-quality code** for the **Web application**:
+  -	Use **data encapsulation**.
+  -	Use **exception handling** properly.
+  -	Use **inheritance, abstraction, and polymorphism** properly.
+  -	Follow the **principles of strong cohesion** and **loose coupling**.
+  -	Correctly **format and structure** your code, name your **identifiers** and make the code **readable**.
 
-•	Well-looking **user interface (UI)**.
-•	Good user experience **(UX)**.
-•	Use a **source control system** by choice, e.g., **GitHub**, BitBucket.
-  o	Submit a link to your public source code repository.
+-	Well-looking **user interface (UI)**.
+-	Good user experience **(UX)**.
+-	Use a **source control system** by choice, e.g., **GitHub**, BitBucket.
+  -	Submit a link to your public source code repository.
 
 ### Bonuses:
-•	Write tests (**Unit & Integration**) for your **views/models/forms** - at least 10 tests
-•	Writing **asynchronous view/s** somewhere in the project
-•	**Extend your Django project with REST Capabilities** 
-•	Extend **Django user**
-•	Host the application in a **cloud environment**
-•	**Additional functionality**, not explicitly described in this section, will be counted as a bonus if it has practical usage
+-	Write tests (**Unit & Integration**) for your **views/models/forms** - at least 10 tests
+-	Writing **asynchronous view/s** somewhere in the project
+-	**Extend your Django project with REST Capabilities** 
+-	Extend **Django user**
+-	Host the application in a **cloud environment**
+-	**Additional functionality**, not explicitly described in this section, will be counted as a bonus if it has practical usage
 
+## Project Description:
+Digital **Servicebook** is tool that help car owners to document and monitor data for past and future services and taxes for his vehicle.
+
+### How it works:
+- Every user can register a couple of vehicles, with extended data for brand, model, engine, ets.
+- Every vehicle have two different data sections:
+   - Service and Rapairs (history of all services of the vehicle or add a new record)
+   - Bills and Taxes (data for expiring of all bills/taxes)
 
 ### The project defense was evaluated with 109/115 pts.
