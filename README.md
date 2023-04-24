@@ -72,5 +72,3 @@ Digital **Servicebook** is tool that help car owners to document and monitor dat
 - Every vehicle have two different data sections:
    - Service and Rapairs (history of all services of the vehicle or add a new record)
    - Bills and Taxes (data for expiring of all bills/taxes)
-
-### The project defense was evaluated with 109/115 pts.
