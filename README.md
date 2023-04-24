@@ -36,8 +36,8 @@ Your Web application should use the following technologies, frameworks, and deve
 -	**Admins** - at **least 2 groups** of admins:
  	-	One **must** have permission to do **full CRUD functionalities (superusers)**; 
  	-	The other/s have permission to do **limited CRUD functionalities (staff).**
-  -	User **roles** could be **manageable** from the admin site.
-  -	Make sure the **role management** is **secured** and **error-safe**.
+ 	-	User **roles** could be **manageable** from the admin site.
+ 	-	Make sure the **role management** is **secured** and **error-safe**.
 
 -	Implement **Exception Handling** and **Data Validation** to avoid **crashes** when **invalid data** is entered 
 (both **client-side** and **server-side**)
@@ -46,10 +46,10 @@ Your Web application should use the following technologies, frameworks, and deve
 ### Additional:
 -	Follow the **best practices** for **Object-Oriented design** and **high-quality code** for the **Web application**:
  	-	Use **data encapsulation**.
-  -	Use **exception handling** properly.
-  -	Use **inheritance, abstraction, and polymorphism** properly.
-  -	Follow the **principles of strong cohesion** and **loose coupling**.
-  -	Correctly **format and structure** your code, name your **identifiers** and make the code **readable**.
+ 	-	Use **exception handling** properly.
+ 	-	Use **inheritance, abstraction, and polymorphism** properly.
+ 	-	Follow the **principles of strong cohesion** and **loose coupling**.
+ 	-	Correctly **format and structure** your code, name your **identifiers** and make the code **readable**.
 
 -	Well-looking **user interface (UI)**.
 -	Good user experience **(UX)**.
